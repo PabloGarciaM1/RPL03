@@ -1,0 +1,211 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>RPL03:Se&ntilde;ales en tiempo discreto</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-11-16"><meta name="DC.source" content="ASySPrac3PabloGarciaMoralesyVivianaFernandez.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>RPL03:Se&ntilde;ales en tiempo discreto</h1><!--introduction--><p>GARCIA MORALES PABLO</p><p>FERNANDEZ SANTANA VIVIANA ELIZABETH</p><p>2MV1</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Objetivos</a></li><li><a href="#2">Introduccion</a></li><li><a href="#3">Desarrollo</a></li><li><a href="#4">1</a></li><li><a href="#5">2</a></li><li><a href="#6">3</a></li><li><a href="#7">4</a></li><li><a href="#8">5</a></li><li><a href="#9">6</a></li><li><a href="#10">Referencias</a></li></ul></div><h2 id="1">Objetivos</h2><p>Manipulaci&oacute;n b&aacute;sica de MATLAB</p><p>Gr&aacute;ficas de se&ntilde;ales reales y complejas discretas</p><p>Transformaci&oacute;n de se&ntilde;ales discretas (escalamientos y traslaciones)</p><p>Calculo de energ&iacute;a y potencia de se&ntilde;ales discretas</p><h2 id="2">Introduccion</h2><p>Escalamiento de se&ntilde;ales Las operaciones de escalamiento horizontal y/o vertical sobre una se&ntilde;al f[n]tienen como consecuencia que se genere una nueva se&ntilde;al g[n] cuya gr&aacute;fica precisamente es un escalamiento, horizontal o vertical de la gr&aacute;fica de la se&ntilde;al "original". Si queremos generar una se&ntilde;al g[n] que sea el escalamiento horizontal de la se&ntilde;al f[n],b distinto de 0 y entero unidades escribiremos: g[n]=f[bn] Cuando  0&lt; b &lt;1 la gr&aacute;fica resultante es una expansi&oacute;n horizontal respecto a la original. Si b=1 no hay escalamiento, la gr&aacute;fica resultante es id&eacute;ntica a la original. Ahora si b&gt;1  la gr&aacute;fica es una compresi&oacute;n horizontal respecto a la original. Si  b=0  entonces la se&ntilde;al resultante es una constante (ser&iacute;a la evaluaci&oacute;n de f  en (0) que podr&iacute;a estar bien definida o no, eso depender&aacute; de la forma de f si  -1&lt; b &lt;0  la gr&aacute;fica resultante se expande y se invierte horizontalmente respecto a la original. Si  b= -1  la gr&aacute;fica resultante solo se invierte horizontalmente respecto a la original. Cuando b&lt;-1  la gr&aacute;fica resultante se comprime y se invierte horizontalmente respecto a la original. Ejemplo</p><h2 id="3">Desarrollo</h2><h2 id="4">1</h2><pre class="language-matlab">
+<span class="keyword">function</span>[fn]=func1(ohm,alf)
+fn=(r.^(n).*cos(ohm.*n))+(1i*r.^(n).*sin(ohm.*n));
+<span class="keyword">end</span>
+
+</pre><h2 id="5">2</h2><pre class="codeinput">n=-2:10;alf=0.9;
+ func2(n,alf);
+</pre><img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_01.png" alt=""> <h2 id="6">3</h2><pre class="codeinput">n=-2:20;r=1.1;ohm=0.5;
+func3(r,n,ohm);
+</pre><img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_02.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_03.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_04.png" alt=""> <h2 id="7">4</h2><pre class="language-matlab">
+<span class="keyword">function</span>[ene]=energiadis(x)
+sum=0;
+
+<span class="keyword">for</span> n=-100:100
+   ene= (x.^2);
+<span class="keyword">end</span>
+
+</pre><h2 id="8">5</h2><pre class="codeinput">x = @(n) n.*((n&gt;=-3)&amp;(n&lt;=3));
+n=-4:4;
+figure
+stem(n,x(n))
+energiadis(x(n))
+a=ans;
+ energiat=sum(a)
+</pre><pre class="codeoutput">
+ans =
+
+     0     9     4     1     0     1     4     9     0
+
+
+energiat =
+
+    28
+
+</pre><img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_05.png" alt=""> <h2 id="9">6</h2><pre class="codeinput">f = @(n) n.*((n&gt;=0)&amp;(n&lt;3))+(-1.*n+6).*((n&gt;=3)&amp;(n&lt;6));
+n= -10:10;
+figure
+stem(n,f(n)); xlabel(<span class="string">'n'</span>); ylabel(<span class="string">'x(n)'</span>); grid;
+figure
+stem(n,f(-1*n)); xlabel(<span class="string">'n'</span>); ylabel(<span class="string">'x(-n)'</span>); grid;
+figure
+stem(n,f(n+6)); xlabel(<span class="string">'n'</span>); ylabel(<span class="string">'x(n+6)'</span>); grid;
+figure
+stem(n,f(n-6)); xlabel(<span class="string">'n'</span>); ylabel(<span class="string">'x(n-6)'</span>); grid;
+figure
+stem(n,f(3*n)); xlabel(<span class="string">'n'</span>); ylabel(<span class="string">'x(3n)'</span>); grid;
+figure
+stem(n,f(n/3)); xlabel(<span class="string">'n'</span>); ylabel(<span class="string">'x(n/3)'</span>); grid;
+figure
+stem(n,f(3-n)); xlabel(<span class="string">'n'</span>); ylabel(<span class="string">'x(3-n)'</span>); grid;
+</pre><img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_06.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_07.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_08.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_09.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_10.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_11.png" alt=""> <img vspace="5" hspace="5" src="ASySPrac3PabloGarciaMoralesyVivianaFernandez_12.png" alt=""> <h2 id="10">Referencias</h2><p>B.P.Lathi, <i>Linear Systems and Signals</i> , Oxford University Press, 2005, New York</p><p>Rafael Martinez Martinez. (2018). Practica 3: Se&ntilde;ales continuas. 29/10/18, de MATLAB Sitio web: <a href="http://rafneta.github.io/Practica3ASySNoviembre2018/Prac3ASySNoviembre2018.html">http://rafneta.github.io/Practica3ASySNoviembre2018/Prac3ASySNoviembre2018.html</a></p><p>Danilo &#352;?epanovi?. (2010). Variables, Scripts, and Operations. 29/10/18, de IAP Sitio web: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec01.pdf</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% RPL03:Señales en tiempo discreto
+% GARCIA MORALES PABLO
+%
+% FERNANDEZ SANTANA VIVIANA ELIZABETH
+%
+% 2MV1
+%%
+%% Objetivos
+% Manipulación básica de MATLAB
+%
+% Gráficas de señales reales y complejas discretas
+%
+% Transformación de señales discretas (escalamientos y traslaciones)
+%
+% Calculo de energía y potencia de señales discretas
+%
+%% Introduccion
+% Escalamiento de señales
+% Las operaciones de escalamiento horizontal y/o vertical sobre una señal  
+% f[n]tienen como consecuencia que se genere una nueva señal g[n] 
+% cuya gráfica precisamente es un escalamiento, horizontal o vertical de la gráfica de la señal "original". 
+% Si queremos generar una señal g[n] que sea el escalamiento horizontal de la señal f[n],b distinto de 0 y entero unidades escribiremos:
+% g[n]=f[bn]
+% Cuando  0< b <1 la gráfica resultante es una expansión horizontal respecto a la original. Si b=1 no hay escalamiento, la gráfica resultante es idéntica a la original. Ahora si  
+% b>1  la gráfica es una compresión horizontal respecto a la original. Si  b=0  entonces la señal resultante es una constante (sería la evaluación de  
+% f  en (0) que podría estar bien definida o no, eso dependerá de la forma de f
+% si  -1< b <0  la gráfica resultante se expande y se invierte horizontalmente respecto a la original. Si  b= -1  la gráfica resultante solo se invierte horizontalmente respecto a la original. Cuando b<-1  la gráfica resultante se comprime y se invierte horizontalmente respecto a la original.
+% Ejemplo
+
+%% Desarrollo
+%%% 1
+%
+% <include>func1.m</include>
+%
+%%% 2
+n=-2:10;alf=0.9;
+ func2(n,alf);
+%% 3
+n=-2:20;r=1.1;ohm=0.5;
+func3(r,n,ohm);
+%% 4
+% <include>energiadis.m</include>
+
+%% 5
+x = @(n) n.*((n>=-3)&(n<=3));
+n=-4:4;
+figure
+stem(n,x(n))
+energiadis(x(n))
+a=ans;
+ energiat=sum(a)
+%% 6
+f = @(n) n.*((n>=0)&(n<3))+(-1.*n+6).*((n>=3)&(n<6));
+n= -10:10;
+figure
+stem(n,f(n)); xlabel('n'); ylabel('x(n)'); grid;
+figure
+stem(n,f(-1*n)); xlabel('n'); ylabel('x(-n)'); grid;
+figure
+stem(n,f(n+6)); xlabel('n'); ylabel('x(n+6)'); grid;
+figure
+stem(n,f(n-6)); xlabel('n'); ylabel('x(n-6)'); grid;
+figure
+stem(n,f(3*n)); xlabel('n'); ylabel('x(3n)'); grid;
+figure
+stem(n,f(n/3)); xlabel('n'); ylabel('x(n/3)'); grid;
+figure
+stem(n,f(3-n)); xlabel('n'); ylabel('x(3-n)'); grid;
+
+
+%% Referencias
+% B.P.Lathi, _Linear Systems and Signals_ , Oxford University Press, 2005,
+% New York
+% 
+% 
+% 
+% Rafael Martinez Martinez. (2018). Practica 3: Señales continuas. 29/10/18, de MATLAB Sitio web: http://rafneta.github.io/Practica3ASySNoviembre2018/Prac3ASySNoviembre2018.html
+%
+% Danilo Š?epanovi?. (2010). Variables, Scripts, and Operations. 29/10/18, de IAP Sitio web: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/lecture-notes/MIT6_094IAP10_lec01.pdf
+%
+%
+%
+%
+
+
+
+ 
+
+
+##### SOURCE END #####
+--></body></html>
